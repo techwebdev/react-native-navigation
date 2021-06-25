@@ -17,7 +17,7 @@ const DetailsStack = createStackNavigator();
 
 const MainTabScreen = () => {
   return (
-    <Tab.Navigator initialRouteName="Feed" activeColor="#fff">
+    <Tab.Navigator initialRouteName="Home" activeColor="#fff">
       <Tab.Screen
         name="Home"
         component={HomeStackScreen}
