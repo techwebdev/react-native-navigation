@@ -13,13 +13,14 @@ import {
   Text,
   TouchableRipple,
   Switch,
+  useTheme,
 } from 'react-native-paper';
+import {AuthContext} from '../components/context';
 
 const DrawerContent = props => {
-  const [isDarkTheme, setIsDarkTheme] = React.useState(false);
-  const toggleTheme = () => {
-    setIsDarkTheme(!isDarkTheme);
-  };
+  const {signOut, toggleTheme} = React.useContext(AuthContext);
+  const papperTheme = useTheme();
+
   return (
     <View style={{flex: 1}}>
       <DrawerContentScrollView {...props}>
@@ -117,7 +118,7 @@ const DrawerContent = props => {
               <View style={styles.preference}>
                 <Text>Dark Theme</Text>
                 <View pointerEvents="none">
-                  <Switch value={isDarkTheme} />
+                  <Switch value={papperTheme.dark} />
                 </View>
               </View>
             </TouchableRipple>
@@ -130,6 +131,9 @@ const DrawerContent = props => {
             <Icon name="log-in-outline" color={color} size={size} />
           )}
           label="Sign Out"
+          onPress={() => {
+            signOut();
+          }}
         />
       </Drawer.Section>
     </View>
